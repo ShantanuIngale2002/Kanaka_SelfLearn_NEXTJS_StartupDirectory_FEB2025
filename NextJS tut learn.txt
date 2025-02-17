@@ -1,0 +1,176 @@
+Docs > https://nextjs.org/docs/app/getting-started
+
+JS MASTERY TUTORIAL >>
+	> youtube : https://youtu.be/Zq5fmkH0T78?si=vWEEUspJd92Ds8VW
+	> figma : https://resource.jsmastery.pro/pitch-startup
+	> GitHub : https://github.com/adrianhajdin/yc_directory
+	> GitHub Readme.MD : https://github.com/adrianhajdin/yc_directory/blob/main/README.md
+
+Theory in notebook but project started at 1:05
+
+
+
+Installations >>
+
+i. Next's Auth.js : https://authjs.dev/getting-started/installation?framework=next-js
+	> npm i next-auth
+ii. tailwind other libraries:
+	> npm i @tailwindcss/typography tailwindcss-animate
+
+
+
+Created yc_directory, open in vs code and using terminal:
+	> npx create-next-app@latest ./
+	> TS : y (type script)
+	> ESLint : y (eslint for clean code)
+	> tailwind : y (styling)
+	> src : n (not required)
+	> app router : y  (will be using router)
+	> turbo pack : y (smooth app execution)
+	> import alias : n (no need)
+
+- In package.json we have to add two properties, since next-auth and other packages should be latest, not using react 18, add this in between scripts and dependencies :
+	"packageManager": "npm@10.5.2",
+  	"overrides": {
+   		"react": "$react",
+    		"react-dom": "$react-dom"
+  	},
+
+
+- For Auth, using Next's Auth.js
+	> npm i next-auth@beta
+	> npx auth secret    then y
+
+- Created 'yc_directory/auth.ts' and paste the code from doc for starter
+- Created 'app/auth/[...nextauth]/auth.ts and pasted code from doc for starter
+- Now from scratch getting GitHub-OAuth, go to connections/providers/GitHub in docs from left-side-bar
+	> 1. GitHub - Create OAuth : https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app
+		> Follow for steps and add app name and desc but for below add values as:
+			- Homepage URL : http://localhost:3000 (for starter)
+			- authorization callback : https://localhost:3000/api/auth/callback/github  (from doc)
+		> Create application
+		> Now click on generate a new client secret
+		> in .env.local add Client Id and Secret as :
+			- AUTH_GITHUB_ID="[id]"
+			- AUTH_GITHUB_SECRET="[secret]"
+		> downloaded - shuttle icon and added to application logo
+		> update auth.ts with code on doc
+			import NextAuth from "next-auth"
+			import GitHub from "next-auth/providers/github"
+ 			export const { handlers, auth, signIn, signOut } = NextAuth({
+  				providers: [GitHub],
+			})
+
+- Now using tutorial's readme.MD, Copy custom "tailwind.config.ts" and globals.css custom css style properties.
+- Installing tailwind pakages:
+	> npm i @tailwindcss/typography tailwindcss-animate
+
+- Now installing shad-cn:
+	> goto https://ui.shadcn.com/docs/cli
+	> in vs terminal use cli cmd : npx shadcn@latest init
+
+
+# layout.tsx is an skeleton for route it lies in, renders page.tsx as main page at {children}'s place
+
+- Updated app/layout.tsx : for MetaData and font
+
+- Created : app/components
+	> to store client/server components
+- Created : components/Navbar.tsx
+	> scripted for navigation
+
+- Created : (root)
+	> route group as "/"
+- Created : (root)/layout.tsx
+	> <Navbar /> is added for all pages in (root)
+	> {children} replaces page.tsx
+- Created : (root)/page.tsx
+	> Home page of the app
+
+- Created : components/SeachForm.tsx (server C)
+	> search bar integrated in (root)/page.tsx
+- Created : components/SearchFormReset.tsx (Client C)
+	> To support client button and reset() to be used in / integrated in above component.
+- Created : components/StartupCard.tsx
+	> To pass all cards info in this component and render with its template
+
+
+
+While scripting above files issue I got and solved:
+
+1. posts have temp array data (posts), where post._createdAt = new Date(...). Now here was a issue of passing Date Object. Solution:
+	- using Ctrl+P in VSCode search 'utils.ts' and add this function below cn() :
+
+export function formatDate(date: string){
+  return new Date(date).toLocaleDateString("en-IN", {
+    month: 'long',
+    day: "numeric",
+    year: "numeric"
+  });
+}
+
+2. The app has trust issue with image link from post.image. Solution:
+	- using Crtl+P in VSCode search 'next.config.ts' and update NextConfig var as :
+
+const nextConfig: NextConfig = {
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*"
+      }
+    ]
+  }
+};
+
+
+ 
+
+- Added shadcn's Button using > npx shadcn@latest add button
+- New components/ui/Button.tsx is created now move all our "components" into that newly created components folder at 'ui' folder level and delete old.
+
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
