@@ -130,7 +130,11 @@ const nextConfig: NextConfig = {
 - Added shadcn's Button using > npx shadcn@latest add button
 - New components/ui/Button.tsx is created now move all our "components" into that newly created components folder at 'ui' folder level and delete old.
 
-- 
+
+- Now, logged in using GitHub to Sanity . io
+- Created Project StartupDirectory (next js, from scratch)
+- From overview, copy CLI cmd
+
 
 
 
