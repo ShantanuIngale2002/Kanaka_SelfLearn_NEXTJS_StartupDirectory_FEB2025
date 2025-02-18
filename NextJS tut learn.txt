@@ -168,9 +168,29 @@ const nextConfig: NextConfig = {
 
 
 
+- Now we need to setup schema for author which we will get from GitHub:
+	> Created : sanity/schemaTypes/author.ts
+	> defineType w/ properties and add fields
+	> list this schema into sanity/schemaTypes/index.ts
+	> for items pass array w/ this listItem included into sanity/structure.ts
 
+- Now schema for startup:
+	> Created : sanity/schemaTypes/startup.ts
+	> defineType w/ properties and add fields w/ type and validations
+	> list this schema into sanity/schemaTypes/index.ts
+	> for items pass array w/ this listItem included into sanity/structure.ts
 
+- We have used markdown type for 'pitch' field in startup.ts, for which we will need to install :
+	> npm i sanity-plugin-markdown
+	> add this into 'plugins' array in sanity.config.ts as:
+		- import {markdownSchema} from 'sanity-plugin-markdown'
+		- plugins:[...., markdownSchema(),]
+	> also import markdown related css in app/layout.tsx as:
+		- import 'easymde/dist/easymde.min.css';
 
+- Now in localhost.../studio/structure, We can see this folders/schemas are created and visible to be used.
+
+- 
 
 
 
