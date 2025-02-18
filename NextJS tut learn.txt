@@ -10,12 +10,15 @@ Theory in notebook but project started at 1:05
 
 
 
-Installations >>
+Important Installations >>
 
 i. Next's Auth.js : https://authjs.dev/getting-started/installation?framework=next-js
 	> npm i next-auth
 ii. tailwind other libraries:
 	> npm i @tailwindcss/typography tailwindcss-animate
+iii. sanity
+	> cli and npm i next-sanity@canary
+
 
 
 
@@ -131,12 +134,37 @@ const nextConfig: NextConfig = {
 - New components/ui/Button.tsx is created now move all our "components" into that newly created components folder at 'ui' folder level and delete old.
 
 
-- Now, logged in using GitHub to Sanity . io
+- Adding SANITY.IO >
+- Now, logged in using Google (i used) or any to Sanity . io
 - Created Project StartupDirectory (next js, from scratch)
 - From overview, copy CLI cmd
+	
+	- GET CLI ON SANITY and paste it in project's terminal
+	- Create a new project or select an existing one StartupDirectory (dy927hg2)
+	- Select dataset to use production
+	- Would you like to add configuration files for a Sanity project in this Next.js folder? Yes
+	- Do you want to use TypeScript? Yes
+	- Would you like an embedded Sanity Studio? Yes
+	- What route do you want to use for the Studio? /studio
+	- Select project template to use Clean project with no predefined schema types
+	- Would you like to add the project ID and dataset to your .env.local file? Yes
 
+- Now install latest sanity for api feature using
+	> npm i next-sanity@canary
 
+- Now typing 'loca.../studio' it gives error bcz sanity doesn't use turbopack yet.. Hence removing turbopack as:
+	> package.json remove --turbopack from "dev": "next dev --turbopack"
 
+- What does sanity have added in our project?
+	1. sanity.cli.ts : cli cmd usable configs like var
+	2. sanity.config.ts : sanity's self configuration to make it run
+	3. sanity/lib/client : to create client based on info to get data and make call
+	4. sanity/lib/image.ts : image url builder uploaded on sanity, no need (delete them)
+	5. sanitly/lib/live.ts : can del
+	6. sanity/schemaTypes/index.ts : contains schema info (its blank initially tho)
+	7. sanity/env.ts : contains env's for sanity
+	8. sanity/structure.ts : arrange of schema (we can manipulate)
+	9. app/sanity/tool/page.tsx : shows their at ('/studio')
 
 
 
