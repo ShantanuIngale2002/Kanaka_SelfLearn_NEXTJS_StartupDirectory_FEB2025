@@ -313,6 +313,17 @@ TO use TypeGen:
 
 
 
++++++++++++ REAL TIME SEARCH W/ URL QUERY PARAM ++++++++++++++++++
+
+- In page.tsx, we were getting query from search, we can make use of it.
+- add that query as param to sanityFetch method
+- use it in sanity/lib/queries.ts, into the query
+
+# Notes :
+	> Search is done word-based or more like tokenization ie. for 'Banana wafers', 'banana' will work BUT not 'bana'
+	> We have added functionality that when we click on card's category search is made, so check it out as well.
+
+
 
 
 
