@@ -190,7 +190,44 @@ const nextConfig: NextConfig = {
 
 - Now in localhost.../studio/structure, We can see this folders/schemas are created and visible to be used.
 
-- 
+
+- Adding one author and one startup in sanity at localhost.../studio/structure
+
+- Now on 'Vision' option in lh/studio , we can query the data, example:
+	> * means all data
+	> *[type=='startup'] means from all data where type is startup
+	> can checkout sanity's data fetching documentation
+
+- Now, we are using static post, but now we need to use sanity's data that we stored using query and data fetching.
+
+- Created /sanity/lib/queries.ts, where initial query has been added
+- Now in app/(root)/page.tsx, we have added 'client' and STARTUPS_QUERY and got results.
+
+
+- Now as we know, typescript is very type specific and hence we need to use TypeGen by sanity.
+	> TypeGen creates types for Types for Sanity Schema and GROQ query results
+	> Sanity TypeGen will create Types for queries that are assigned to a variable and use the defineQuery function.
+
+TO use TypeGen:
+    i. extract sanity schema
+	> npx sanity@latest schema extract --path=./sanity/extract.json
+    ii. create sanity-typegen.json in root folder
+	> doc: https://www.sanity.io/learn/course/content-driven-web-application-foundations/generate-typescript-types#s-7cd40049889f
+	> add from docs removing "src/" from 'schema' and 'generates' keys.
+    iii. generate typegen
+	> npx sanity@latest typegen generate
+    iv. Now as we add new GROQ queries this cmd is required to be executed again unless we automate the process, using scripts, add scripts from docs for/from package.json into package.json's scripts key and end of it.
+	> remove "src/" from path though.
+
+
+- StartupTypeCard Type: Now as typegen is generated, we can determine our StartupTypeCard as:
+    i. In startupCard.tsx:
+	> export type StartupTypeCard = Omit<Startup, "author"> & {author?: Author}
+	> it defines type using Startup and Author from /sanity/types.ts created when generated typegen
+	> it can be exported hence in other files can be used
+    ii. import it into page.tsx as well
+
+
 
 
 
