@@ -259,7 +259,7 @@ TO use TypeGen:
 
 
 
-+++++++++++ SANITY'S ISR Data Fetching / Validation Bottleneck ++++++++++++++++++
++++++++++++ SANITY'S TYPE-GEN use - StartupTypeCard definition ++++++++++++++++++
 
 - StartupTypeCard Type: Now as typegen is generated, we can determine our StartupTypeCard as:
     i. In startupCard.tsx:
