@@ -22,6 +22,8 @@ iii. sanity
 
 
 
++++++++++++++++ PROJECT INITIALIZATION +++++++++++++++++++++++++
+
 Created yc_directory, open in vs code and using terminal:
 	> npx create-next-app@latest ./
 	> TS : y (type script)
@@ -38,6 +40,11 @@ Created yc_directory, open in vs code and using terminal:
    		"react": "$react",
     		"react-dom": "$react-dom"
   	},
+
+
+
+
++++++++++++++++++++ NEXT-JS AUTH (using GitHub) ++++++++++++++++
 
 
 - For Auth, using Next's Auth.js
@@ -64,6 +71,12 @@ Created yc_directory, open in vs code and using terminal:
   				providers: [GitHub],
 			})
 
+
+
+
+++++++++++++++++++++++++ CUSTOM CSS FOR (tailwind and global.css) AND SHADCN ++++++++++++++++++++++
+
+
 - Now using tutorial's readme.MD, Copy custom "tailwind.config.ts" and globals.css custom css style properties.
 - Installing tailwind pakages:
 	> npm i @tailwindcss/typography tailwindcss-animate
@@ -72,6 +85,9 @@ Created yc_directory, open in vs code and using terminal:
 	> goto https://ui.shadcn.com/docs/cli
 	> in vs terminal use cli cmd : npx shadcn@latest init
 
+
+
+++++++++++++++++++++++ LAYOUT AND COMPONENTS +++++++++++++++++++++++++
 
 # layout.tsx is an skeleton for route it lies in, renders page.tsx as main page at {children}'s place
 
@@ -97,6 +113,11 @@ Created yc_directory, open in vs code and using terminal:
 - Created : components/StartupCard.tsx
 	> To pass all cards info in this component and render with its template
 
+
+
+
++++++++++++++++ CUSTOM DATE FORMAT HANDLING +++++++++++++++++++++++
++++++++++++++++ EXTERNAL IMAGE LINK TRUST ISSUE +++++++++++++++++++
 
 
 While scripting above files issue I got and solved:
@@ -128,11 +149,15 @@ const nextConfig: NextConfig = {
 };
 
 
- 
+
++++++++++++++ USING SHADCN BUTTON ++++++++++++++++++++++++
 
 - Added shadcn's Button using > npx shadcn@latest add button
 - New components/ui/Button.tsx is created now move all our "components" into that newly created components folder at 'ui' folder level and delete old.
 
+
+
+++++++++++++++++++++++ INTEGRATING SANITY.IO ++++++++++++++++++++++
 
 - Adding SANITY.IO >
 - Now, logged in using Google (i used) or any to Sanity . io
@@ -168,6 +193,8 @@ const nextConfig: NextConfig = {
 
 
 
+++++++++++++++++++ ADDING SANITY'S SCHEMAS +++++++++++++++++
+
 - Now we need to setup schema for author which we will get from GitHub:
 	> Created : sanity/schemaTypes/author.ts
 	> defineType w/ properties and add fields
@@ -188,6 +215,10 @@ const nextConfig: NextConfig = {
 	> also import markdown related css in app/layout.tsx as:
 		- import 'easymde/dist/easymde.min.css';
 
+
+
++++++++++++++ SANITY'S STUDIO : lh/studio ++++++++++++++++++++++++++++
+
 - Now in localhost.../studio/structure, We can see this folders/schemas are created and visible to be used.
 
 
@@ -198,11 +229,18 @@ const nextConfig: NextConfig = {
 	> *[type=='startup'] means from all data where type is startup
 	> can checkout sanity's data fetching documentation
 
+
+
+++++++++++++++++++++++ SANITY'S GROQ QUERY +++++++++++++++++++++++++
+
 - Now, we are using static post, but now we need to use sanity's data that we stored using query and data fetching.
 
 - Created /sanity/lib/queries.ts, where initial query has been added
 - Now in app/(root)/page.tsx, we have added 'client' and STARTUPS_QUERY and got results.
 
+
+
+++++++++++++++++++++++ SANITY'S TYPE-GEN +++++++++++++++++++++++++
 
 - Now as we know, typescript is very type specific and hence we need to use TypeGen by sanity.
 	> TypeGen creates types for Types for Sanity Schema and GROQ query results
@@ -220,17 +258,15 @@ TO use TypeGen:
 	> remove "src/" from path though.
 
 
+
++++++++++++ SANITY'S ISR Data Fetching / Validation Bottleneck ++++++++++++++++++
+
 - StartupTypeCard Type: Now as typegen is generated, we can determine our StartupTypeCard as:
     i. In startupCard.tsx:
 	> export type StartupTypeCard = Omit<Startup, "author"> & {author?: Author}
 	> it defines type using Startup and Author from /sanity/types.ts created when generated typegen
 	> it can be exported hence in other files can be used
     ii. import it into page.tsx as well
-
-
-
-
-
 
 
 
