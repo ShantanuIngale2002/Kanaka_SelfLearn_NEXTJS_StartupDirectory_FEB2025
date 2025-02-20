@@ -54,7 +54,7 @@ const StartupCard = (
 
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={image} alt="Placeholder" className='startup-card_img' />
-                {/* img does work we need w/custom css but next's <Image> is not that suitable here */}
+                {/* img does work we need, w/custom css but next's <Image> is not that suitable here */}
             </Link>
 
             <div className="flex-between gap-3 mt-5">

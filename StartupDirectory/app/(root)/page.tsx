@@ -1,7 +1,8 @@
-import { client } from "@/sanity/lib/client";
+// import { client } from "@/sanity/lib/client";
 import SearchForm from "../../components/SearchForm";
 import StartupCard, { StartupTypeCard } from "../../components/StartupCard";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 export default async function Home(
     {searchParams}:{searchParams: Promise<{query?:string}>}
@@ -9,7 +10,9 @@ export default async function Home(
 
     const query = (await searchParams).query;
 
-    const posts = await client.fetch(STARTUPS_QUERY);
+    // const posts = await client.fetch(STARTUPS_QUERY);
+    // using live API
+    const {data: posts} =  await sanityFetch({query: STARTUPS_QUERY});
 
     return(
       <>
@@ -23,7 +26,7 @@ export default async function Home(
 
         <section className="section_container">
           <p className="text-30-semibold">
-            {query ? `Search results for ${query}` : "All Startups"}
+            {query ? `Search results for "${query}"` : "All Startups"}
           </p>
           <ul className="mt-7 card_grid">
             {
@@ -38,6 +41,8 @@ export default async function Home(
             }
           </ul>
         </section>
+
+        <SanityLive /> {/* this is req to add at end for Live Data Fetching */}
       </>
   );
 }
