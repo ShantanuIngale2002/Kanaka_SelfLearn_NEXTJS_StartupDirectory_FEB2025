@@ -271,7 +271,45 @@ TO use TypeGen:
 
 
 
++++++++++++ SANITY'S ISR Data Fetching / Validation Bottleneck ++++++++++++++++++
 
+- Now, lets see a case, In /sanity/lib/client.ts :
+	> we have set 'useCdn: true'
+	> means to cache data from cdn ie.
+		- Un-cached req is sent, from source, data saved in response gets saved in cache
+		- For all req's, in next 60 secs, cached data will get delivered rather than source itself.
+		- After 60 sec, for any req, new data from source will be acquired and will get cached again for next 60 secs
+	> bottleneck:
+		- suppose req has been made, and data is cached for 60 sec's.
+		- Now at 20th sec some new records has been added, but the req's for next 40 sec's will not get this data but only cached data
+
+	> Two solution:
+		i. set 'useCdn: false' ie. get data always for any req from source directly.
+		ii. Cache and Live API w/ next js (topic next to learn)
+
+
+
+
++++++++++++ SANITY'S ISR Data Fetching / Validation Bottleneck's Solution ++++++++++++++++++
+
++++++++++++ CACHE and LIVE API w/ NextJS ++++++++++++++++++
+
+
+- setting useCdn as false, for every refresh we can get fresh data from source, BUT why on refresh? We can get data, immediately without need to refresh, using NextJS's Live Content API
+
+- To setup, install a only server component supporting package:
+	> npm i server-only
+
+- Created /sanity/lib/live.ts and update w/:
+	> export const {sanityFetch, SanityLive} = defineLive({client});
+
+- Update .env.local w/:
+	> NEXT_PUBLIC_SANITY_API_VERSION="v1"; or "vX";
+	> but its giving the issue, instead use the current date when client is setting up. OR comment it, api version is already in 'env.ts' file likewise.
+
+- update app/(root)/page.tsx w/
+	> const {data: posts} =  await sanityFetch({query: STARTUPS_QUERY});
+	> <SanityLive /> // at last in file after section-end
 
 
 
