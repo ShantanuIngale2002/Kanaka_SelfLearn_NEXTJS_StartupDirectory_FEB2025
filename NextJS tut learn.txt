@@ -372,6 +372,15 @@ TO use TypeGen:
 
 
 
++++++++++++++++ Author Authentication Flow +++++++++++++++
+
+- Our major flow is like, if a new user is logged in create his author, then new/existing,, either way return session/token.
+- Updated queries.ts to get author's info using id
+- Updated auth.ts with callbacks for authentication
+- next-auth.d.ts is used because {id} was not getting recognized for session also, it requires NextAuth imported for no error
+
+
++++++++++++++++ Sanity Write Client +++++++++++++++
 
 
 
