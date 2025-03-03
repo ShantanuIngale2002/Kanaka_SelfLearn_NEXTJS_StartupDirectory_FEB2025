@@ -347,6 +347,31 @@ TO use TypeGen:
 
 
 
++++++++++++++++ Sanity Write Client +++++++++++++++
+
+- We need to update old / create new data, for which we need sanity's write client, with proper write/update permissions, for that:
+	> goto our project in sanity.io
+	> go into 'API' tab from navbar
+	> go into 'Tokens' from sidebar
+	> Create New API token
+	> add name (ex. Create and Update Startups)
+	> provide 'editor' permissions
+	> save
+	> will get a token in box - Copy it
+	> Paste it into .env.local maybe like SANITY_WRITE_TOKEN="<token>"
+	> export define in sanity/env.ts as export const token = process.env.SANITY_WRITE_TOKEN;
+	> Created sanity/lib/write-client.ts : as server-only service with token imported and passed to create client.
+
+- Now we can use writeClient to update/increment the views for the post of that id, but we need to do that without blocking UI...
+	> import unstable_after provided by next/server:
+		+ this schedule the work to be executed after response is finished / page is loaded cmpltly.
+	> in after() async/await the query/command to update the views as
+		+ for the post of that id
+		+ set/increment views
+		+ save changes
+
+
+
 
 
 
