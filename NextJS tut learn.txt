@@ -333,6 +333,25 @@ TO use TypeGen:
 
 
 
+++++++++++++ STARTUP DETAILS ++++++++++++++++++
+
+- Created and Updated app/(root)/startup/[id]/page.tsx as:
+	> get post and display its Id as demo work
+	> Add template to show all post information of the post.
+	> If post have Pitch, article shows it using dangerouslySetInnerHTML={{__html: parsedContent}}, this ensures the Pitch is shown on styles its stored
+	> Import and use <Skeleton> and use it in <Suspence> element, to show details with partial rendering.
+	> Views (Components/Views.tsx) are partially pre-rendered with use of <Suspense /> tag and Ping (Components/Ping.tsx) is used to show, blinking pink light like circle.
+	> To get views, sanity/lib/queries.ts has updated with new query.
+	> Views are fetched on real-time using sanity's fetch and live.
+
+
+
+
+
+
+
+
+
 
 
 

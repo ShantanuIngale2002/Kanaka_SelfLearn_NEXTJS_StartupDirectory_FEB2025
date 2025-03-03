@@ -45,3 +45,12 @@ export const STARTUP_BY_ID_QUERY = defineQuery(`*[
                                                     image,
                                                     Pitch,
                                                 }`);
+
+export const STARTUP_VIEWS_QUERY = defineQuery(`*[ 
+                                                    _type == 'startup' 
+                                                    && _id == $id 
+                                                ] [0]
+                                                {
+                                                    _id,
+                                                    views
+                                                }`);
