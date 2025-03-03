@@ -380,8 +380,31 @@ TO use TypeGen:
 - next-auth.d.ts is used because {id} was not getting recognized for session also, it requires NextAuth imported for no error
 
 
-+++++++++++++++ Sanity Write Client +++++++++++++++
++++++++++++++++++++ Create Startup Page +++++++++++++++++++
 
+- Now we need to create page with form where we can add new startup to do so:
+	> Created app/(root)/startup/create/page.tsx
+	> If no user logged in, redirect to home page, bcz the user who will create startup will be its author.
+
+- Created components/StartupForm.tsx : having shadcn's
+	> input for title
+	> textarea for description
+	> input for category and image url
+	> MARKDOWN for Pitch (interesting):
+		+ markdown means it allows multiple styling options and inline image inserting as well with side preview
+		+ for this import react's mardown editor
+		+ npm i @uiw/react-md-editor
+		+ added MDEditor with some customs
+		+ added button, where disable is controlled using a constant isPending with react's Send symbol
+
+- Now to handle form submission action, using 'useActionStateHook' new react-hook as:
+	> it takes formAction that refers to function that is required to handle form submission
+	> also initial state
+
+- Defining handleFormSubmit function for the purpose
+- Now to add values validation for form values, Created app/lib/Validation.ts and added fields name with validations using zod's z
+- Update app/layout.ts for adding sonners/toast by nextjs
+- you can see the errors/toast and if succeed then object for now in console with formdata. 
 
 
 
