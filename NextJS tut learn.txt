@@ -325,7 +325,11 @@ TO use TypeGen:
 
 
 
+++++++++++++++++++++ PARTIAL PRE-RENDERING ++++++++++++++++
 
+- Partial Prerendering enables rendering static and dynamic components together in the same route.
+- During build, NextJS prerenders as much route (static) as possible, if any dynamic code is detected, sent for static rendering. React's Suspense can be used.
+- Can understand PPR : https://youtu.be/MTcPrTIBkpA?si=Y3yKErp0zXTSy_H0
 
 
 
