@@ -3,6 +3,7 @@ import Ping from './Ping'
 import { client } from '@/sanity/lib/client'
 import { STARTUP_VIEWS_QUERY } from '@/sanity/lib/queries';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
+import { writeClient } from '@/sanity/lib/write-client';
 
 const View = async ({id}:{id: string}) => {
 
@@ -11,7 +12,7 @@ const View = async ({id}:{id: string}) => {
     // TODO - Update view whenever this page/post is viewed
 
     // real-time views fetch
-    const {data} = await sanityFetch({query: STARTUP_VIEWS_QUERY, params:{id}});
+    const {data:{views: totalViews}} = await sanityFetch({query: STARTUP_VIEWS_QUERY, params:{id}});
 
     return (
         <>
@@ -22,7 +23,7 @@ const View = async ({id}:{id: string}) => {
 
                 <div className="view-text">
                     <span className="font-black">
-                        {data.views} Views
+                        {totalViews} Views
                     </span>
                 </div>
             </div>
