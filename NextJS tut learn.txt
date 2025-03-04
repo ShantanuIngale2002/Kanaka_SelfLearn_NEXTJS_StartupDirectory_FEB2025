@@ -429,9 +429,50 @@ TO use TypeGen:
 
 
 
++++++++++++++++++++ Performance and Bug Tracking in Next.JS apps w/ Sentry +++++++++++++++++++
+
+
+- Now majorly our app is cmplt, but suppose many hundred of thousands of user using our app, they may break our app/ find some bugs or need to report something.
+- For this use we can make use of Sentry : this is very good tool that provides monitoring and tracking of our application on developer and also user level.
+- for setting up:
+	> goto https://sentry.io/welcome/
+	> sentry is called to be the one of the best application monitoring software
+	> signin using google
+	> goto https://sentry.io/onboarding, click Start, click NextJS, click Configure
+	> goto package.json in our app and add "next": "$next" in "overrides" object key, to make use of same nextjs on both side
+	> now in VS terminal paste their configure cmd : npx @sentry/wizard@latest -i nextjs --saas --org shantanu-9k --project <project_name>
+	> click y
+	> select javascript-nextjs (come by default) in project
+	> latest version : Yes
+	> route sentry requests...to avoid ad blockers: No
+	> react component annotation : Yes
+	> enable tracing : Yes
+	> enable sentry session : Yes
+	> example page : Yes
+	> CI/CD : Yes (will be using vercel)
+	> COPY TOKEN generated their neatly (this may cut process since ctrl+C, only ctrl+C once)
+	> Yes, continue
+
+- Now this error is intentional:
+	> goto http://localhost:3000/sentry-example-page
+	> throw error
+	> not in sentry's Issues you can see two errors
+	> you have so many information about not only bug but users device info like browser and all	
+	> you can check 'view full trace' of the bug/error
+
+- Sentry also provide, user feedback modal, that provides a little button like element ("Report a bug?") on bottom-right, that allows user to share bug title, description and screenshot, also on sentry small time activity video is also acquired before the modal was used. To configure:
+	> goto 'User Feedback' in left panel
+	> click 'Set Up Now'
+	> check only integration code and select only part of it:
+			Sentry.feedbackIntegration({
+      				colorScheme: "system",
+    			}),
+	> Done, you can now see a button on bottom-right saying 'Report a bug?', which can be clicked and any user after entering the information can add a bug.
+	> you can see that bugs in same 'User Feedback' page on Sentry website, the user feedback bug information/notification is provided via email.
 
 
 
+		
 
 
 
