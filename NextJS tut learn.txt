@@ -475,7 +475,16 @@ TO use TypeGen:
 		
 
 
++++++++++++++++++++ User Profile +++++++++++++++++++
 
+- Created app/(root)/user/[id]/page.tsx
+- Here user profile templated is created
+- New query in query.ts had been added to get all startups by an author
+- Created components/UsrStartups.tsx to get show all startups of author
+- IN page.tsx above is used within <Suspense /> in order to wait or show loading while fetching data
+- in StartupCard.tsx, an StartupCardSkeleton has been created as fallback loading for above suspense.
+- Navbar.tsx has been updated in order to:
+	> show logo/create or logo/logout or avatar/name depending upon display size
 
 
 
