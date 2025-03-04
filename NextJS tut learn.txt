@@ -408,6 +408,22 @@ TO use TypeGen:
 
 
 
++++++++++++++++++++ Server Actions +++++++++++++++++++
+
+- The server actions are the methods, that are executed on server side like form data handling, Database querying, etc; it reduces the requirement to use API for everything.
+- In our app, we are using server action to create a pitch/startup details for our startup.
+
+- Created lib/actions.ts
+- added 'createPitch' method that used in StartupForm.tsx component where formData and pitch is passed.
+- added 'parseServerActionResponse' method in lib/utils.ts, to return response which is stringify-ed then parse-d.
+
+- What we did in ceatePitch method:
+	> get session
+	> if null, error, that user is not logged in 
+	> else destructure form data except pitch field bcz that value is managed by state
+	> generate a slug using slugify package (npm i slugify)
+	> create startup with proper field names for sanity startup scehma
+	> created using writeClient got feedback/result, returned that, since it contains '_id' we need to redirect to later.
 
 
 
